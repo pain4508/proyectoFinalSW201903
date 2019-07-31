@@ -1,0 +1,96 @@
+
+var uuidv4 = require('uuid/v4'); 
+var express = require('express');
+var router = express.Router();
+
+
+var fileModel = require('./jsonmodel');
+var data = null; //temporary store
+
+var thingTp = {
+    '_id':'',
+    'desc':'',
+    'fcIng':'',
+    'author':'',
+    'due':null,
+    'done':false,
+    'type':'small'
+};
+
+// Obtener things
+
+router.get('/', function(req, res, next){
+    if(!data){
+        fileModel.read(function(err, filedata){
+            if(err){
+                console.log(err);
+                data = [];
+                return res.status(500).json({'Error':'Error al Obtener la Data'});
+            }
+            data = JSON.parse(filedata);
+            return res.status(200).json(data);
+        });
+    }else{
+        return res.status(200).json(data);
+    }
+}); // get/
+
+router.post('/new', function(req, res, next){
+    var _thingsData = Object.assign({}, thingTp, req.body);
+    var dateT = new Date();
+    var dateD = new Date();
+    dateD.setDate(dateT.getDate()+ 3);
+    _thingsData.fcIng = dateT;
+    _thingsData.due = dateD;
+    _thingsData._id = uuidv4();
+
+    if(!data){
+        data = [];
+    }
+    data.push(_thingsData);
+    fileModel.write(data, function(err){
+        if(err){
+            console.log(err);
+            return res.status(500).json({'Error':'Error al Obtener la Data'});
+        }
+        return res.status(200).json(_thingsData);
+    });
+}); //Nuevo things
+
+router.put('/done/:thingID', function (req, res, next){
+    var _thingId = req.params.thingId;
+    var _thingUpds = req.body;
+    var _thingUpdated = null;
+
+    var newData = data.map(
+        function(doc, i){
+            if(doc._id == _thingId){
+                _thingUpdated = Object.assign(
+                    {},
+                     doc,
+                     {"done":true},
+                     _thingUpds
+                     );
+                return _thingUpdated;
+            }
+            return doc;
+        }
+    ); // end map
+    data = newData;
+    fileModel.write(data, function(err){
+        if(err){
+            console.log(err);
+            return res.status(500).json({'Error':'Error al Guardar la Data'});
+        }
+        return res.status(200).json(_thingUpdated);
+    });
+});// Set a thing as done
+
+fileModel.read(function(err, filedata){
+    if(err){
+        console.log(err);
+    }else{
+        data = JSON.parse(filedata);
+    }
+});
+module.exports = router;

@@ -5,5 +5,5 @@
   - **ProyectoAPP** FrontEnd SPA React Web Application (Future Release).
   - **Docs** Todos los Recursos de Analisis, Diseño, Scripts y estras.
     - **Profiles** Fichas Técnicas de todos los integrantes del equipo.
-      - User GitHub **pain4508**-administrador.
+     
 
