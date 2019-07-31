@@ -131,28 +131,18 @@
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
-							"key": "title",
-							"value": "Nuevo Things",
+							"key": "desc",
+							"value": "Nuevo things  2",
 							"type": "text"
 						},
 						{
-							"key": "duedate",
-							"value": "20190326",
-							"type": "text"
-						},
-						{
-							"key": "description",
-							"value": "Nuevo things a realizar el dia asignado",
-							"type": "text"
-						},
-						{
-							"key": "userid",
-							"value": "12345",
+							"key": "author",
+							"value": "kmsprado2546@gmail.com",
 							"type": "text"
 						},
 						{
 							"key": "type",
-							"value": "big",
+							"value": "small",
 							"description": "big small",
 							"type": "text"
 						}
@@ -179,9 +169,31 @@
 			"name": "http://localhost:3000/api/things/done/12345",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "category",
+							"value": "SW",
+							"type": "text"
+						},
+						{
+							"key": "desc",
+							"value": "Se agrego category",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "http://localhost:3000/api/things/done/12345",
+					"raw": "http://localhost:3000/api/things/done/775d2b8d-4e15-4393-9f74-d67f51051b99",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -191,10 +203,33 @@
 						"api",
 						"things",
 						"done",
-						"12345"
+						"775d2b8d-4e15-4393-9f74-d67f51051b99"
 					]
 				},
 				"description": "Marca el Thing por ID como terminado"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/things/delete/775d2b8d-4e15-4393-9f74-d67f51051b99",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/things/delete/775d2b8d-4e15-4393-9f74-d67f51051b99",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"things",
+						"delete",
+						"775d2b8d-4e15-4393-9f74-d67f51051b99"
+					]
+				},
+				"description": "Eliminacion de los things"
 			},
 			"response": []
 		}
