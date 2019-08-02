@@ -59,6 +59,18 @@ router.get('/byid/:thingid', (req, res, next)=>{
     }); //getThing By Id
 });//get by Id
 
+router.get('/bytags/:tag', (req, res, next)=>{
+    mongoModel.seachByTags((req.params.tag || '').split('_'), (err, docs)=>{
+        if(err){
+            console.log(err);
+            return res.status(500).json({"error":"No se encontro el PBE"});
+        }else{
+            return res.status(200).json(docs);
+        }
+
+    }); //seachByTag
+}); //by tag
+
 router.post('/new', function(req, res, next){
     var _thingsData = Object.assign({}, thingTp, req.body);
     var dateT = new Date();
@@ -119,6 +131,15 @@ router.put('/done/:thingId', function (req, res, next){
     });
 });// Set a thing as done
 
+router.put('/addtags/:id', (req, res, next)=>{
+    mongoModel.addTagsToThing((req.body.tags || '').split('|'), req.params.id, (err, result)=>{
+        if(err){
+            console.log(err);
+            return res.status(500).json({"error":"No se puede actualizar el PBE"});
+        }
+        return res.status(200).json(result);
+    }); // end addTagsToThing
+}); // addtags
 router.delete('/delete/:thingId', function(req, res, next){
     var _thingId = req.params.thingId;
     var newData = data.filter(
