@@ -58,7 +58,7 @@ lib.seachByTags = (tags, handler)=>{
             handler(null, docs);
         }
     }); //toArray
-} //seachByTags
+} //seach By Tags
 
     return lib;
 } // mongoModel
