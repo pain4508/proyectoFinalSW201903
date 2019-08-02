@@ -49,6 +49,16 @@ router.get('/', function(req, res, next){
     //}
 }); // get/
 
+router.get('/byid/:thingid', (req, res, next)=>{
+    mongoModel.getthingById(req.params.thingid, (err, thingDoc)=>{
+        if(err){
+            console.log(err);
+            return res.status(500).json({"errror":"Error al obtener el Thing"});
+        }
+        return res.status(200).json(thingDoc);
+    }); //getThing By Id
+});//get by Id
+
 router.post('/new', function(req, res, next){
     var _thingsData = Object.assign({}, thingTp, req.body);
     var dateT = new Date();

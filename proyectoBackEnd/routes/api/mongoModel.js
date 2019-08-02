@@ -1,3 +1,5 @@
+var ObjectId = require("mongodb").ObjectID;
+
 function mongoModel(db){
 
     var lib = {};
@@ -14,6 +16,17 @@ function mongoModel(db){
             }
         ); //toArray
     } //getAllThings
+
+lib.getthingById = (thingId, handler)=>{
+    pbe.findOne({"_id": new ObjectId(thingId)},(err, doc)=>{
+        if(err){
+            handler(err, null);
+        }else{
+            handler(null, doc);
+        }
+    }); // findOne
+} //getThing By Id
+
 lib.addNewThing = (newThing, handler)=>{
     pbe.insertOne(newThing, (err, r)=>{
         if(err){
