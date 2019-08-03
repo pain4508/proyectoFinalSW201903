@@ -60,6 +60,47 @@ lib.seachByTags = (tags, handler)=>{
     }); //toArray
 } //seach By Tags
 
+
+lib.togglePBEDone = (id, handler)=>{
+    var filter = {"_id":ObjectId(id)};
+    // get filred document
+    pbe.findOne(filter, (err, doc)=>{
+        if(err){
+            handler(err, null);
+        }else{
+            if(doc){
+                //doc.done = !doc.done;
+                //doc.fcDone = new Date();
+                var updateExpression = {};
+                if(doc.done){
+                    updateExpression = {"$set":{done : false, fcDone: null}};
+                }else{
+                    updateExpression = {"$set":{done : true, fcDone: new Date()}};
+                }
+                pbe.updateOne(filter, updateExpression,  (err, rslt)=>{
+                    if(err){
+                        handler(err, null);
+                    }else{
+                        handler(null, rslt.result);
+                    }
+                });
+            }else{
+                handler(new Error("El documento no Existe"), null)
+            }
+        }
+    });// findOne
+}
+
+lib.deleteById = (Id, handler)=>{
+    pbe.deleteOne({"_id": ObjectId(Id)}, (err, rslt)=>{
+        if(err){
+            console.log(err);
+            handler(err, null);
+        }else{
+            handler(null, rslt.result);
+        }
+    }); // deleteOne
+} // deleteById
     return lib;
 } // mongoModel
 
