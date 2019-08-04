@@ -14,10 +14,10 @@ class Input extends Component{
     render(){
         var error_cmp = null;
         if(this.props.inputErrorMsg){
-            error_cmp = (<div clasName= "error">{this.props.inputErrorMsg}</div>);
+            error_cmp = (<div className = "error">{this.props.inputErrorMsg}</div>);
         }
         return (
-     <fieldser>
+     <fieldset>
             <label>{this.props.inputLabel || ''}</label>
 
             <input type = {this.props.inputType || 'text'}
@@ -26,11 +26,9 @@ class Input extends Component{
                    value = {this.props.inputValue || ''}
                    onBlur = {this.props.inputBlurHandler || ((e)=>{return false;})}
                    onChange = {this.props.inputChangeHandler || ((e)=>{return false;})} 
-                 
-                    />
-                    {error_cmp}
-            <div className="input_error"></div>
-        </fieldser>
+                />
+            {error_cmp}
+        </fieldset>
         );
     }
 }
