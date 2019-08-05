@@ -1,6 +1,6 @@
 import React, {Component} from  'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-
+import PrivateRoute from './Components/generics/privateroute/PrivateRoute';
 //import logo from './logo.svg';
 import Login from './Components/pages/login/Login';
 import Signin from './Components/pages/signin/Signin';
@@ -14,6 +14,15 @@ function Home(){
     return (<h1>Home Page</h1>);
 }
 class App extends Component{
+    constructor(){
+        super();
+        this.state = {
+
+        isAuthenticated : false,
+        use : null,
+        firsVerified : false
+    }
+}
     render(){
         return (
             <Router>
@@ -27,9 +36,9 @@ class App extends Component{
             <Route path = "/" exact component = {Home} />
             <Route path = "/login"  component = {Login} />
             <Route path = "/signin"  component = {Signin} />
-            <Route path = "/list"  component = {List} />
-            <Route path = "/addnew"  component = {NewItem} />
-            <Route path = "/detail/:itemid"  component = {Detail} />
+            <PrivateRoute path = "/list"  component = {List} auth = {this.state} />
+            <PrivateRoute path = "/addnew"  component = {NewItem} auth = {this.state}/>
+            <PrivateRoute path = "/detail/:itemid"  component = {Detail} auth = {this.state}/>
             <Footer></Footer>
             </div>
             </Router>

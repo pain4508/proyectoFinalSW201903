@@ -15,17 +15,28 @@ PUT     |  router.put       | Actualizar
 DELETE  |  router.delete    | Borrar
  */
 
- router.post('/new', function (req, res, next){
+ // ojo no dejar asi
+ router.post('/login', function (req, res, next){
     var _userData = req.body;
-    console.log(_userData);
-    res.json({"msg":"ok"});
-    
+    if(req.body.email === "kmsprado2546@gmail.com"
+     && req.body.password ==="holamundo"){
+        req.session.logged = true;
+        req.session.loggeduser = req.body.email;
+        res.status(200).json({"msg":"ok..."});
+    }else{
+        res.status(403).json({"error":"Credenciales No Välidas"});
+    }
  }); // post new
 
- router.post('/login', function (req,res,next){
+ router.get('/logout', function (req, res, next){
      var _userData= req.body;
-     console.log(_userData);
+     req.session.logged = false;
+     req.session.loggeduser = null;
      res.json({"msg":"ok"});
  }); // post login
+
+ router.get('/session', function (req, res, next){
+    res.json({"active": req.session.logged && true});
+}); // post login
 
 module.exports = router;
