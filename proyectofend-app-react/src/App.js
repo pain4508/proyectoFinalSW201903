@@ -17,11 +17,14 @@ class App extends Component{
     constructor(){
         super();
         this.state = {
-
         isAuthenticated : false,
-        use : null,
+        users : null,
         firsVerified : false
     }
+    this.setAuthState = this.setAuthState.bind(this);
+}
+setAuthState(authProps){
+    this.setState(authProps);
 }
     render(){
         return (
@@ -34,7 +37,7 @@ class App extends Component{
                 <li><Link to = "/list">list</Link></li>
             </nav>
             <Route path = "/" exact component = {Home} />
-            <Route path = "/login"  component = {Login} />
+            <Route path = "/login"  render = {(p)=>(<Login {...p} auth={{...this.state, setAuthState:this.setAuthState}}/>)} />
             <Route path = "/signin"  component = {Signin} />
             <PrivateRoute path = "/list"  component = {List} auth = {this.state} />
             <PrivateRoute path = "/addnew"  component = {NewItem} auth = {this.state}/>
