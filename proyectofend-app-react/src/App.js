@@ -5,6 +5,9 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Login from './Components/pages/login/Login';
 import Signin from './Components/pages/signin/Signin';
 import Footer from './Components/generics/footer/Footer';
+import Detail from './Components/pages/detail/Detail';
+import List from './Components/pages/list/List';
+import NewItem from './Components/pages/newItem/NewItem';
 import './App.css';
 
 function Home(){
@@ -19,10 +22,14 @@ class App extends Component{
                 <li><Link to = "/">Home</Link></li>
                 <li><Link to = "/login">Login</Link></li>
                 <li><Link to = "/signin">SignIn</Link></li>
+                <li><Link to = "/list">list</Link></li>
             </nav>
             <Route path = "/" exact component = {Home} />
             <Route path = "/login"  component = {Login} />
             <Route path = "/signin"  component = {Signin} />
+            <Route path = "/list"  component = {List} />
+            <Route path = "/addnew"  component = {NewItem} />
+            <Route path = "/detail/:itemid"  component = {Detail} />
             <Footer></Footer>
             </div>
             </Router>
