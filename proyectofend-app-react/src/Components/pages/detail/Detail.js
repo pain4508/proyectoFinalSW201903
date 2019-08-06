@@ -8,7 +8,7 @@ class Detail extends Component{
             detail: null,
             isLoading: false,
             hasErrors: false,
-            post: []
+            message : ''
         }
         this.componentDelete = this.componentDelete.bind(this);
     }
@@ -25,9 +25,11 @@ class Detail extends Component{
     }
     componentDelete(){
         let {itemid} = this.props.match.params;
-        axios.get(`/api/things/delete/${itemid}`)
+        axios.delete(`/api/things/delete/${itemid}`)
         .then((resp)=>{
-            this.setState({detail:resp.data, isLoading:false, hasErrors: false});
+            alert("Elemento Eliminado Satisfactoriamente");
+            console.log("Elemento Eliminado Satisfactoriamente");
+            
         })
         .catch((err)=>{
            console.log("Error al Eliminar el elemento");
