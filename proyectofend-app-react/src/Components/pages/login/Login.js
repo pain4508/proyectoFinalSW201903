@@ -4,6 +4,7 @@ import Body from '../../generics/body/Body';
 import Input from '../../generics/input/Input';
 import {Redirect, Link} from 'react-router-dom';
 import axios from 'axios';
+import './Login.css';
 
 class Login extends Component{
     constructor(){
@@ -41,7 +42,10 @@ class Login extends Component{
                      inputErrorMsg=""
                      inputChangeHandler={this.onChangehandler}
                    />
-                   <button onClick={this.onClickHandler}>Login</button>
+                   <button onClick={this.onClickHandler} className = "botonLogin">Login</button>
+                   <br/>
+                   <br/>
+                   <br/>
                </Body>
             </div>
         );
@@ -57,7 +61,8 @@ class Login extends Component{
         axios.post(
             '/api/users/login', 
             {"email": this.state.txtEmail, "password" : this.state.txtPswd}
-            ).then((resp)=>{
+            ).then(
+                (resp)=>{
                 this.props.auth.setAuthState(
                     {
                         "isAuthenticated" : true,

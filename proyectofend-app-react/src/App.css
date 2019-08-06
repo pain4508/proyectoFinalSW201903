@@ -1,7 +1,15 @@
 .App {
   text-align: center;
+  
 }
-
+.image1{
+  background: url('./images/fondo.jpg');
+  width: 100%;
+  height: 50vh;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
@@ -30,4 +38,8 @@
   to {
     transform: rotate(360deg);
   }
+
+/*------------------------------------------*/
+
 }
+

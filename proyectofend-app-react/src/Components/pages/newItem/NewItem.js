@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Body from '../../generics/body/Body';
 import Input from '../../generics/input/Input';
-
+import './NewItem.css';
 class NewItem extends Component{
     constructor(){
         super();
@@ -60,7 +60,7 @@ class NewItem extends Component{
         }
         return(
             <div>
-                <h1>Nuevo Things</h1>
+                <h1 className = "newElement">Nuevo Elemento</h1>
                 <Body>
                     <Input
                     inputLabel         ="Descripción"
@@ -92,7 +92,8 @@ class NewItem extends Component{
                     inputChangeHandler ={this.onChangehandler}
                     inputBlurHandler   ={this.onBlurHandler}
                     />
-                    <button onClick = {this.onClickHandler}>Agregar</button>
+                    <br/>
+                    <button className = "botonNew" onClick = {this.onClickHandler}>Agregar</button>
                     <div>
                         {this.state.error}
                     </div>

@@ -15,17 +15,11 @@ PUT     |  router.put       | Actualizar
 DELETE  |  router.delete    | Borrar
  */
 
- // ojo no dejar asi
+
  router.post('/login', function (req, res, next){
     var _userData = req.body;
-    if(req.body.email === "kmsprado2546@gmail.com"
-     && req.body.password ==="holamundo"){
-        req.session.logged = true;
-        req.session.loggeduser = req.body.email;
-        res.status(200).json({"msg":"ok..."});
-    }else{
-        res.status(403).json({"error":"Credenciales No Välidas"});
-    }
+    console.log(_userData);
+    res.json({"msg":"ok"});
  }); // post new
 
  router.get('/logout', function (req, res, next){

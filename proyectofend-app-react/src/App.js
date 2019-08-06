@@ -8,10 +8,15 @@ import Footer from './Components/generics/footer/Footer';
 import Detail from './Components/pages/detail/Detail';
 import List from './Components/pages/list/List';
 import NewItem from './Components/pages/newItem/NewItem';
+import './pagePri.css';
 import './App.css';
 
 function Home(){
-    return (<h1>Home Page</h1>);
+    return (
+       <div> 
+            <h1 className = "pagePri" className = "image1">"Pagina Principal"</h1>
+       </div>
+    );
 }
 class App extends Component{
     constructor(){
@@ -29,19 +34,21 @@ setAuthState(authProps){
     render(){
         return (
             <Router>
+            <br/>
             <div className="App">
-            <nav>
-                <li><Link to = "/">Home</Link></li>
-                <li><Link to = "/login">Login</Link></li>
-                <li><Link to = "/signin">SignIn</Link></li>
-                <li><Link to = "/list">list</Link></li>
-            </nav>
+            <hr/>
             <Route path = "/" exact component = {Home} />
             <Route path = "/login"  render = {(p)=>(<Login {...p} auth={{...this.state, setAuthState:this.setAuthState}}/>)} />
             <Route path = "/signin"  component = {Signin} />
             <PrivateRoute path = "/list"  component = {List} auth = {this.state} />
             <PrivateRoute path = "/addnew"  component = {NewItem} auth = {this.state}/>
             <PrivateRoute path = "/detail/:itemid"  component = {Detail} auth = {this.state}/>
+            <nav className = "nav1">
+                <li className = "li"><Link to = "/" className = "text1" >Pagina Principal</Link></li>
+                <li className = "li"><Link to = "/login" className = "text1" >Login</Link></li>
+                <li className = "li"><Link to = "/signin" className = "text1">SignIn</Link></li>
+                <li className = "li"><Link to = "/list" className = "text1">lista</Link></li>
+            </nav>
             <Footer></Footer>
             </div>
             </Router>

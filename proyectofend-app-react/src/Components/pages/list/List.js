@@ -42,12 +42,14 @@ class List extends Component{
         }
         return (
         <div className = "listholder">
-            <h1>Lista API</h1>
-            <h2>Documentos {this.state.things.length}</h2>
-            <Link to = "addnew">Agregar PBE</Link>
-            <div>
+            <h1 className = "list">Lista de Elementos Creados</h1>
+            <h2>Documentos creados: {this.state.things.length}</h2>
+            <Link to = "addnew">Agregar Elemento</Link>
+            <hr/>
+            <div className = "list1">
                 {listItems}
             </div>
+            <hr/>
             {(this.state.isLoading)? "...Cargando":null}
         </div>
         )

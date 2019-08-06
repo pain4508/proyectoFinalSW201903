@@ -7,8 +7,10 @@ class Detail extends Component{
         this.state = {
             detail: null,
             isLoading: false,
-            hasErrors: false
+            hasErrors: false,
+            post: []
         }
+        this.componentDelete = this.componentDelete.bind(this);
     }
 
     componentDidMount(){
@@ -19,6 +21,16 @@ class Detail extends Component{
         })
         .catch((err)=>{
             this.setState({detail:null, isLoading:false, hasErrors:err});
+        })
+    }
+    componentDelete(){
+        let {itemid} = this.props.match.params;
+        axios.get(`/api/things/delete/${itemid}`)
+        .then((resp)=>{
+            this.setState({detail:resp.data, isLoading:false, hasErrors: false});
+        })
+        .catch((err)=>{
+           console.log("Error al Eliminar el elemento");
         })
     }
     render(){
@@ -39,9 +51,14 @@ class Detail extends Component{
         return (
             <div>
                 {itemBody}
+            <button onClick={this.componentDelete}>Eliminar Elemento</button>
+            <br/>  
             <Link to="/list">Regresar</Link>
+            <br/>
             </div>
         );
     }
+
+    
 }
 export default Detail;

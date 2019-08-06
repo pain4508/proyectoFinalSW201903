@@ -1,0 +1,10 @@
+.botonLogin{
+    color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 0.5em 1.2em;
+  background: #318aac;
+  border: 2px solid;
+  border-color: #318aac;
+  position: relative;
+  }

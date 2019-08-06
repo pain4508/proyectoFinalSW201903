@@ -3,7 +3,7 @@ import './Footer.css';
 export default ()=>{
     return(
         <div>
-           Copyright 2019 SW 
+           <h1 className = "footer">Copyright &copy; 2019 SW || UNICAH DES </h1> 
         </div>
     );
 }
