@@ -50,7 +50,7 @@ class List extends Component{
                 {listItems}
             </div>
             <hr/>
-            {(this.state.isLoading)? "...Cargando":null}
+            {(this.state.isLoading)? "......Cargando":null}
         </div>
         )
     }
